@@ -12,8 +12,8 @@ pub struct Args {
     pub output: OutFormat,
 
     /// The comic to load
-    #[clap(long, short, default_value = "0")]
-    pub num: usize,
+    #[clap(long, short)]
+    pub num: Option<usize>,
 
     /// Save image file to current directory
     #[clap(long, short)]

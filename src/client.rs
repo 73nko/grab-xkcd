@@ -1,4 +1,3 @@
-
 use std::{
     convert::{TryFrom, TryInto},
     env, fmt,
@@ -58,7 +57,7 @@ impl XkcdClient {
     }
 }
 
-#[derive(Deserialize)]
+#[derive(Serialize)]
 struct Comic {
     title: String,
     num: usize,
@@ -78,8 +77,6 @@ impl Comic {
     }
 
     fn save(&self) -> Result<()> {
-        use std::io::Read;
-
         let url = Url::parse(&*self.img_url)?;
         let img_name = url.path_segments().unwrap().last().unwrap();
         let p = env::current_dir()?;
@@ -96,7 +93,7 @@ impl From<ComicResponse> for Comic {
         Comic {
             title: cr.title,
             num: cr.num,
-            date: format!("{}-{}-{}", cr.day, cr.month, cr.year)
+            date: format!("{}-{}-{}", cr.day, cr.month, cr.year),
             desc: cr.alt,
             img_url: cr.img
         }
