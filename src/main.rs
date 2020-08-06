@@ -1,3 +1,10 @@
+
+mod cli;
+
+
+const BASE_URL: &str = "https://xkcd.com";
+
+
 fn main() {
-    println!("Hello, world!");
+    let args = Args::parse();
 }
